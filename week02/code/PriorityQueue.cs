@@ -3,8 +3,12 @@
     private List<PriorityItem> _queue = new();
 
     /// <summary>
-    /// Add a new value with a priority to the back of the queue.
+    /// Add a new value to the queue with an associated priority.  The
+    /// node is always added to the back of the queue regardless of 
+    /// the priority.
     /// </summary>
+    /// <param name="value">The value</param>
+    /// <param name="priority">The priority</param>
     public void Enqueue(string value, int priority)
     {
         _queue.Add(new PriorityItem(value, priority));
