@@ -183,15 +183,18 @@ public static class SetsAndMaps
         var result = new List<string>();
         foreach (var feature in featureCollection?.Features ?? [])
         {
-            var place = feature.Properties?.Place ?? "Unknown location";
+            if (feature.Properties?.Mag.HasValue != true)
+                continue; // Skip features without magnitude
 
-            string magnitude = feature.Properties?.Mag.HasValue == true
+            var place = feature.Properties?.Place ?? "Unknown location";
+            var magnitude = feature.Properties?.Mag.HasValue == true
                 ? feature.Properties.Mag.Value.ToString("0.00")
                 : "unknown";
 
-            string summary = $"Place: {place}, Magnitude: {magnitude}";
+            var summary = $"Place: {place}, Magnitude: {magnitude}";
             result.Add(summary);
         }
+
 
 
 
